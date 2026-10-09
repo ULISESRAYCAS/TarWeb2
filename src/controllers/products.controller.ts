@@ -16,7 +16,7 @@ export const getAllProducts = async (req: Request, res: Response): Promise<void>
 };
 
 export const getProductById = async (req: Request, res: Response): Promise<void> => {
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.params.id as string);
     if (!isValidId(id)) {
         res.status(400).json({ message: 'ID de producto inválido' }); return;
     }
@@ -54,7 +54,7 @@ export const createProduct = async (req: Request, res: Response): Promise<void> 
 };
 
 export const updateProduct = async (req: Request, res: Response): Promise<void> => {
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.params.id as string);
     const { name, price, stock, description, brand, img } = req.body;
 
     if (!isValidId(id)) {
@@ -77,7 +77,7 @@ export const updateProduct = async (req: Request, res: Response): Promise<void> 
 };
 
 export const deleteProduct = async (req: Request, res: Response): Promise<void> => {
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.params.id as string);
     if (!isValidId(id)) {
         res.status(400).json({ message: 'ID inválido' }); return;
     }
@@ -98,7 +98,7 @@ export const deleteProduct = async (req: Request, res: Response): Promise<void> 
 };
 
 export const changeProductPrice = async (req: Request, res: Response): Promise<void> => {
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.params.id as string);
     const { price } = req.body;
 
     if (!isValidId(id) || !isValidPrice(Number(price))) {
